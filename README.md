@@ -1,21 +1,68 @@
 # StepDetection-and-StepLength-Estimation
 
- StepDetection-and-StepLength-Estimation Using chest mounted IMU.
+Python Package / Application for pedestrian Dead Reckoning (PDR)
 
-Environment:
 
-----Python 3.6.7
 
---------scipy 1.0.0
+## Development
 
---------numpy 1.14.0
+### Python3.x
 
---------python-osc 1.7.0
+1. Create a Virtual Environment
 
-Recomended to use Anaconda, for creating environment easily.
+   ```bash
+   $ virtualenv -m venv venv
+   ```
 
+2. Activate Virtual Environment
+
+   ```bash
+   $ . venv/bin/activate 
+   ```
+
+3. Install the Dependencies
+
+   ```bash
+   $ pip install -r requirements.txt
+   ```
+
+4. Install `pyrobomogen` as python package for development:
+
+   ```bash
+   $ pip install -e .
+   ```
+
+   This makes the `pdr` binary available as a CLI
+
+### Usage
+
+Run `pdr` binary using command line:
+
+- -c configuration file path/name
+
+```bash
+$ pdr -c config.yaml
 ```
-conda create -n py36 python=3.6 scipy=1.0.0 numpy=1.14.0 
-pip install python-osc
-```
+
+
+
+### Docker
+
+1. To build Docker Images locally use:
+
+   ```bash
+   $ docker build -t pdr:<version> .
+   ```
+
+2. To run the Application with the `iotstack` network using:
+
+   ```bash
+   $ docker run --rm --network=iotstack -t pdr:<version> -c config.yaml
+   ```
+
+3. To run the a custom configuration for the Container use:
+
+   ```bash
+   $ docker run --rm -v $(pwd)/config.yaml:/pdr/config.yaml --network=iotstack -t pdr:<version> -c config.yaml
+   ```
 
